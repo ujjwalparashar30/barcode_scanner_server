@@ -11,7 +11,7 @@ const InventoryRouter = require("./src/router/inventoryRouter");
 // const MembershipRouter = require('./router/membershipRouter');
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
 // CORS Configuration
 const corsOptions = {
