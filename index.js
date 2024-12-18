@@ -6,6 +6,8 @@ const session = require('express-session');
 const passport = require('./passport/passportConfig'); // Import the Passport configuration
 const mongoose = require('mongoose');
 
+const DB_URL = "mongodb+srv://whomtalkto:9hfuwScC7AgIIKpE@cluster0.j2yax.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
 const UserRouter = require('./src/router/userRouter');
 const InventoryRouter = require("./src/router/inventoryRouter");
 // const MembershipRouter = require('./router/membershipRouter');
@@ -24,8 +26,12 @@ app.use(cookieParser()); // Updated import
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/your-db-name', {
-
+mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((err) => {
+    console.error("Error connecting to MongoDB:", err);
   });
   
   app.use(cookieParser());
